@@ -36,15 +36,15 @@ funcions d'en Karel).
 
 **Configuració d'idiomes:** codi en anglès (Python-compatible), interfície en català de lectura fàcil.
 
-**Diferències amb karelcat2:** 9 capítols + epíleg (el capítol 10, «Codi net», no surt
-al menú), 9 reptes d'**un sol món** (sense els reptes avançats 10–13), enunciats
-simplificats (sense punts cardinals, sense pistes) i missatges de lectura fàcil.
+**Diferències amb karelcat2:** 10 capítols + epíleg amb el text simplificat, 9 reptes
+d'**un sol món** (sense els reptes avançats 10–13), enunciats simplificats (sense punts
+cardinals, sense pistes) i missatges de lectura fàcil.
 
 ---
 
 ## 2. Estat del curs — completat al 100 %
 
-### 2.1 Capítols (9 + epíleg)
+### 2.1 Capítols (10 + epíleg)
 
 Els títols coincideixen amb `CAPITOLS_DATA` (`curs/capitols.js`) i amb el `<h1>` de cada pàgina.
 
@@ -59,14 +59,14 @@ Els títols coincideixen amb `CAPITOLS_DATA` (`curs/capitols.js`) i amb el `<h1>
 | 7 | `curs/capitol-7.html` | Condicionals | `if cond():` / `else:`, condicions. |
 | 8 | `curs/capitol-8.html` | Mentre | `while cond():`. |
 | 9 | `curs/capitol-9.html` | Combinant condicions | `not`, `and`, `or`. |
+| 10 | `curs/capitol-10.html` | Codi net | Cap sintaxi nova. No repetir codi, noms que expliquen, cada funció una sola feina. |
 | — | `curs/capitol-futur.html` | D'en Karel al Python | Epíleg: pont al Python real. |
 
 Tots els capítols estan llistats a `DISPONIBLES` a `curs/index.html`.
 
-**Capítol 10 («Codi net»):** el fitxer `curs/capitol-10.html` es conserva (amb el text
-ja simplificat i les solucions), però **no surt al menú** ni a l'índex. Per recuperar-lo,
-cal afegir-lo a `CAPITOLS_DATA` (`curs/capitols.js`) i a `DISPONIBLES` (`curs/index.html`),
-i fer que el capítol 9 hi porti.
+**Capítol 10 («Codi net»):** té tres exercicis de «netejar» un codi brut (el mateix
+resultat amb una funció i un `while`, noms que expliquen, `turn_around()`). Les pistes
+van dins de l'enunciat, en una frase curta, com a la resta del -p.
 
 ### 2.2 Reptes (9/9 implementats, un sol món cadascun)
 
@@ -302,11 +302,10 @@ js/reptes.js        — K.REPTES[N]: 5 reptes predefinits per al simulador lliur
                       (accessibles via ?repte=N a index.html). Independents dels
                       reptes del curs (repte-N.html).
 
-curs/index.html     — Índex del curs (9 capítols + epíleg, estil Stanford).
+curs/index.html     — Índex del curs (10 capítols + epíleg, estil Stanford).
 curs/capitol.html   — Plantilla HTML reutilitzable per a capítols (comentada).
-curs/capitol-1..9   — Els 9 capítols del curs. Tots implementats. ✅
+curs/capitol-1..10  — Els 10 capítols del curs. Tots implementats. ✅
 curs/capitol-futur  — Epíleg: d'en Karel al Python. ✅
-curs/capitol-10     — «Codi net»: es conserva, però no surt al menú.
 curs/repte-1..9     — Els 9 reptes, d'un sol món cadascun. ✅
 curs/capitols.js    — CAPITOLS_DATA + REPTES_DATA (amb el nombre de mons de cada repte) +
                       renderSidebar() + renderSimuladors() + toggle mòbil + listener
@@ -569,13 +568,10 @@ El codi només es desa a localStorage al simulador lliure (clau `karel-code-v3`)
 
 ### Categoria P — Contingut propi del -p
 
-| # | Tasca | Detall |
-|---|-------|--------|
-| P.4 | Capítol 10 | Decidir si es recupera «Codi net» (vegeu 2.1). |
-
-Fetes: P.1 (presentació inicial de lectura fàcil, vegeu la secció 9), P.2 (capítol
-«D'en Karel al Python» de lectura fàcil, sense `elif`, que no s'explica al curs) i P.3
-(el repte 8 ja no comença amb una perla a la motxilla).
+Totes fetes: P.1 (presentació inicial de lectura fàcil, vegeu la secció 9), P.2 (capítol
+«D'en Karel al Python» de lectura fàcil, sense `elif`, que no s'explica al curs), P.3
+(el repte 8 ja no comença amb una perla a la motxilla) i P.4 (capítol 10 «Codi net»
+recuperat, amb les seccions 3 i 4 i els exercicis en lectura fàcil).
 
 ### Categoria E — Funcionalitat futura (prioritat baixa)
 
@@ -689,7 +685,7 @@ El -p fa servir el mateix motor que karelcat2. Quan karelcat2 millori:
      d'un sol món (`repteNum` a `_renderSingleMon` i al listener) i els textos fàcils.
    - `tests/comprova-curs.js`: `'i18n-facil'` a la llista de fitxers i les expressions
      dels missatges d'error.
-   - `index.html` i `curs/index.html`: els textos i els números (9 capítols, 9 reptes).
+   - `index.html` i `curs/index.html`: els textos i els números (10 capítols, 9 reptes).
    - `presentacio-karel.html`: **no copiar-la**, és pròpia del -p. Si karelcat2 hi millora
      la navegació (el `<script>` del final), portar només aquell canvi.
 3. **Missatges nous:** si karelcat2 afegeix claus a `K.UI_LANGS.ca`, afegir-ne la versió
@@ -700,7 +696,6 @@ El -p fa servir el mateix motor que karelcat2. Quan karelcat2 millori:
 
 ---
 
-*Última actualització: presentació inicial pròpia, de lectura fàcil, amb vocabulari
-visual i una demostració animada (P.1); capítol «D'en Karel al Python» de lectura fàcil
-(P.2); el repte 8 ja no comença amb una perla a la motxilla (P.3). Abans: el -p passa a
-fer servir el motor de karelcat2, reptes d'un sol món, missatges de lectura fàcil.*
+*Última actualització: capítol 10 «Codi net» recuperat al menú i a l'índex (P.4), amb les
+seccions 3 i 4 i els tres exercicis en lectura fàcil, i una solució incorrecta més als
+exercicis 1 i 3. Abans: presentació inicial pròpia (P.1), capítol futur (P.2), repte 8 (P.3).*

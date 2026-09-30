@@ -28,10 +28,7 @@ function injectCursLogo() {
 }
 
 
-// ── Dades dels 9 capítols del curs + l'epíleg ────────────
-// El capítol 10 («Codi net») de karelcat no surt al menú del -p: el fitxer
-// curs/capitol-10.html es conserva per si es vol recuperar (n'hi ha prou
-// d'afegir-lo aquí i a DISPONIBLES de curs/index.html).
+// ── Dades dels 10 capítols del curs + l'epíleg ───────────
 
 const CAPITOLS_DATA = [
   { num: 1,  titol: 'Coneix en Karel',           arxiu: 'capitol-1.html'  },
@@ -43,6 +40,7 @@ const CAPITOLS_DATA = [
   { num: 7,  titol: 'Condicionals',              arxiu: 'capitol-7.html'  },
   { num: 8,  titol: 'Mentre',                    arxiu: 'capitol-8.html'  },
   { num: 9,  titol: 'Combinant condicions',      arxiu: 'capitol-9.html'  },
+  { num: 10, titol: 'Codi net',                  arxiu: 'capitol-10.html' },
   { num: 'futur', titol: "D'en Karel al Python", arxiu: 'capitol-futur.html' },
 ];
 

@@ -120,7 +120,7 @@
     <a href="../simulador.html" class="karel-nav-link">Simulador</a>
     <a href="../edit-mapa.html" class="karel-nav-link">Editor</a>
   </nav>
-  <div class="curs-header-actions"><button class="karel-clear-btn" onclick="karelClearProgress()" title="Netejar tot el progrés">Netejar històric</button></div>
+  <div class="curs-header-actions"></div>
 </header>
 
 
@@ -515,6 +515,66 @@ ff()</code></pre>
 </div>
 
 
+<!--
+  ════════════════════════════════════════════════════════
+  SOLUCIONS DE REFERÈNCIA — NOMÉS PER AL PROFESSOR
+  (El test tests/comprova-curs.js executa el codi entre les marques.)
+  ════════════════════════════════════════════════════════
+
+<solucio exercici="1">
+def avançar_i_recollir():
+    move()
+    if pearl_here():
+        grab()
+
+while front_is_clear():
+    avançar_i_recollir()
+</solucio>
+
+<solucio exercici="2">
+def avançar_fins_a_paret():
+    while front_is_clear():
+        move()
+
+def recollir_si_hi_ha_perla():
+    if pearl_here():
+        grab()
+
+avançar_fins_a_paret()
+turn_right()
+move()
+recollir_si_hi_ha_perla()
+</solucio>
+
+<solucio-incorrecta exercici="2" motiu="arriba a la cantonada però no recull la perla">
+def avançar_fins_a_paret():
+    while front_is_clear():
+        move()
+
+avançar_fins_a_paret()
+turn_right()
+move()
+</solucio-incorrecta>
+
+<solucio exercici="3">
+def recollir_si_hi_ha_perla():
+    if pearl_here():
+        grab()
+
+def deixar_si_en_queden():
+    if not bag_is_empty():
+        drop()
+
+while front_is_clear():
+    move()
+    recollir_si_hi_ha_perla()
+turn_around()
+while front_is_clear():
+    move()
+    deixar_si_en_queden()
+</solucio>
+-->
+
 <script>const CURRENT_CAPITOL = 10;</script>
 <script src="progress.js"></script>
 <script src="capitols.js"></script>
@@ -525,15 +585,6 @@ ff()</code></pre>
   initSidebarToggle();
 </script>
 
-<script>
-function karelClearProgress() {
-  if (confirm('Vols netejar totes les anotacions dels capítols llegits i dels reptes superats?')) {
-    KProgress.clear();
-    location.reload();
-  }
-}
-</script>
-<script src="../kofi.js"></script>
 <script src="../footer.js"></script>
 
 

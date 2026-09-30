@@ -270,10 +270,9 @@ drop()
 ```
 mapa:     .,A,.,.|.,.,.,A|K>,A,.,.
 objectiu: .,.,.,.|.,.,.,.|K>,.,.,.
-motxilla: 1
 ```
 
-**Notes:** Una volta sencera són 10 passos. La motxilla comença amb 1 perla (vegeu la tasca P.3 de CURRENT-STATE).
+**Notes:** Una volta sencera són 10 passos. La motxilla comença buida.
 
 **Solució de referència:**
 ```python

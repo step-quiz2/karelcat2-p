@@ -1,0 +1,19 @@
+# Executa el test automàtic del curs a cada push i a cada pull request.
+# Si alguna solució de referència deixa de superar els seus mons, o hi ha
+# un mapa mal escrit, l'acció surt en vermell a la pestanya «Actions».
+name: Comprova el curs
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  comprova:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Test del curs (motor, mapes i solucions)
+        run: node tests/comprova-curs.js

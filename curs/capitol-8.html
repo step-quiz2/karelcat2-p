@@ -46,7 +46,7 @@
     </nav>
 
 
-  <div class="curs-header-actions"><button class="karel-clear-btn" onclick="karelClearProgress()" title="Netejar tot el progrés">Netejar històric</button></div>
+  <div class="curs-header-actions"></div>
 </header>
 
 
@@ -165,7 +165,7 @@ while front_is_clear():
 
         <p>Prem ▶ <strong>Executa</strong></p>
 
-        <div class="simulador" data-map="K&gt;,.,A,A,.,A,.,.|.,.,.,.,.,.,.,.,." data-code="while front_is_clear():
+        <div class="simulador" data-map="K&gt;,.,A,A,.,A,.,.|.,.,.,.,.,.,.,." data-code="while front_is_clear():
     move()
     if pearl_here():
         grab()
@@ -207,6 +207,37 @@ while front_is_clear():
 <!-- ══════════════════════════════════════════════════════
      Scripts
      ══════════════════════════════════════════════════════ -->
+<!--
+  ════════════════════════════════════════════════════════
+  SOLUCIONS DE REFERÈNCIA — NOMÉS PER AL PROFESSOR
+  (El test tests/comprova-curs.js executa el codi entre les marques.)
+  ════════════════════════════════════════════════════════
+
+<solucio>
+while front_is_clear():
+    if pearl_here():
+        grab()
+    move()
+turn_around()
+while front_is_clear():
+    if bag_has_pearls():
+        drop()
+    move()
+</solucio>
+
+<solucio-incorrecta motiu="avança abans de deixar cada perla">
+while front_is_clear():
+    if pearl_here():
+        grab()
+    move()
+turn_around()
+while front_is_clear():
+    move()
+    if bag_has_pearls():
+        drop()
+</solucio-incorrecta>
+-->
+
 <script>const CURRENT_CAPITOL = 8;</script>
 <script src="progress.js"></script>
   <script src="capitols.js"></script>
@@ -217,15 +248,6 @@ while front_is_clear():
   initSidebarToggle();
 </script>
 
-<script>
-function karelClearProgress() {
-  if (confirm('Vols netejar totes les anotacions dels capítols llegits i dels reptes superats?')) {
-    KProgress.clear();
-    location.reload();
-  }
-}
-</script>
-<script src="../kofi.js"></script>
 <script src="../footer.js"></script>
 
 

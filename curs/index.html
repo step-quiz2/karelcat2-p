@@ -29,7 +29,7 @@
     </nav>
 
   <span class="curs-header-title">Curs de programació</span>
-  <div class="curs-header-actions"><button class="karel-clear-btn" onclick="karelClearProgress()" title="Netejar tot el progrés">Netejar històric</button></div>
+  <div class="curs-header-actions"></div>
 </header>
 <div class="karel-nav-drawer" id="karel-nav-drawer">
   <a href="capitol-1.html" class="karel-nav-link active">Capítols</a>
@@ -45,8 +45,8 @@
 <div class="curs-index-hero">
   <h1>Aprèn a programar<br>amb en Karel</h1>
   <p>
-    Deu capítols per descobrir la programació des de zero.
-    Llegeix, executa exemples i resol exercicis — tot des del navegador.
+    Nou capítols per aprendre a programar.
+    Llegeix, mira els exemples i fes els exercicis.
   </p>
 </div>
 
@@ -57,6 +57,11 @@
 <ul class="capitols-list" id="capitols-list" aria-label="Llista de capítols">
   <!-- Omplerta per capitols.js -->
 </ul>
+
+<div class="curs-index-footer">
+  <button type="button" class="karel-clear-btn" onclick="karelClearProgress()"
+          title="Esborra d'aquest navegador els capítols i reptes superats i el codi desat dels exercicis">🗑 Esborra el meu progrés</button>
+</div>
 
 
 <!-- ══════════════════════════════════════════════════════
@@ -75,7 +80,7 @@
     const list = document.getElementById('capitols-list');
     if (!list) return;
 
-    const DISPONIBLES = new Set([1,2,4,5,6,7,8,9,'futur']);
+    const DISPONIBLES = new Set([1,2,3,4,5,6,7,8,9,'futur']);
 
     let html = '';
     for (const c of CAPITOLS_DATA) {
@@ -99,17 +104,6 @@
   })();
 </script>
 
-<script>
-(function() {
-  var KEY = 'karel_progress';
-  window.karelClearProgress = function() {
-    if (confirm('Vols netejar totes les anotacions dels capítols llegits i dels reptes superats?')) {
-      try { localStorage.removeItem(KEY); } catch(e) {}
-      location.reload();
-    }
-  };
-})();
-</script>
 
 <script>
 (function() {

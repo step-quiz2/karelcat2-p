@@ -38,7 +38,7 @@
       <a href="../edit-mapa.html" class="karel-nav-link">Editor</a>
     </nav>
 
-  <div class="curs-header-actions"><button class="karel-clear-btn" onclick="karelClearProgress()" title="Netejar tot el progrés">Netejar històric</button></div>
+  <div class="curs-header-actions"></div>
 </header>
 
 
@@ -151,6 +151,37 @@ recull_fila()
   ════════════════════════════════════════════════════════
 -->
 
+<!--
+  ════════════════════════════════════════════════════════
+  SOLUCIONS DE REFERÈNCIA — NOMÉS PER AL PROFESSOR
+  (El test tests/comprova-curs.js executa el codi entre les marques.)
+  ════════════════════════════════════════════════════════
+
+<solucio>
+while front_is_clear():
+    move()
+    if pearl_here():
+        grab()
+turn_left()
+move()
+turn_left()
+if pearl_here():
+    grab()
+while front_is_clear():
+    move()
+    if pearl_here():
+        grab()
+</solucio>
+
+<solucio-incorrecta motiu="gira cap al costat equivocat per canviar de fila">
+while front_is_clear():
+    move()
+    if pearl_here():
+        grab()
+turn_right()
+</solucio-incorrecta>
+-->
+
 <script>const CURRENT_REPTE = 5;</script>
 <script src="progress.js"></script>
   <script src="capitols.js"></script>
@@ -161,15 +192,6 @@ recull_fila()
   initSidebarToggle();
 </script>
 
-<script>
-function karelClearProgress() {
-  if (confirm('Vols netejar totes les anotacions dels capítols llegits i dels reptes superats?')) {
-    KProgress.clear();
-    location.reload();
-  }
-}
-</script>
-<script src="../kofi.js"></script>
 <script src="../footer.js"></script>
 </body>
 </html>

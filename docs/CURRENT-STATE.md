@@ -264,6 +264,11 @@ index.html          — Pàgina d'inici (4 targetes: curs, reptes, simulador, ed
 simulador.html      — Simulador lliure i simulador incrustat als iframes del curs.
 style.css           — ~698 línies. Sense zombies des de la neteja (Categoria C).
 edit-mapa.html      — Editor visual de mapes (eina auxiliar, no és part del curs).
+favicon.svg         — Icona de la pestanya: la medusa pixel art (rosa, vora granat).
+favicon.ico         — La mateixa icona en 16, 32 i 48 px (navegadors sense SVG).
+apple-touch-icon.png — Icona de 180 px per a la pantalla d'inici d'iPhone/iPad.
+                      Totes les pàgines (també curs/*.html, amb ../) enllacen les tres
+                      icones just després del <title>. Una pàgina nova ha de fer el mateix.
 
 js/constants.js     — Namespace K, SVG assets, DIRS, CMD_ACTIONS, COND_ACTIONS,
                       SPEED_DELAYS, DEFAULT_CSV, DEFAULT_CODE, escHtml/sanitizeHtml.
@@ -562,9 +567,12 @@ El codi només es desa a localStorage al simulador lliure (clau `karel-code-v3`)
 
 | # | Tasca | Detall |
 |---|-------|--------|
-| D.1 | Perla en mode clar | El SVG de la perla té píxels blancs purs que desapareixen sobre fons blanc. Revisar el sprite. |
 | D.3 | Responsive mòbil | El mòbil no és prioritari (massa informació). Portàtil i tauleta sí: fet (vegeu secció 9). |
-| D.4 | Favicon | Afegir la medusa rosa com a favicon de la pàgina. |
+
+Fetes (igual que a karelcat2): **D.1** (perla en mode clar: cada color del sprite té una
+classe `pl-*` a `K.KAREL_ASSETS.PEARL` i `style.css` n'enfosqueix la vora, el cos i
+l'ombra quan `body.light`; el mode fosc no canvia) i **D.4** (icona de la pestanya,
+vegeu la secció 5).
 
 ### Categoria P — Contingut propi del -p
 
@@ -676,7 +684,7 @@ El -p fa servir el mateix motor que karelcat2. Quan karelcat2 millori:
 
 1. **Copiar tal qual** de karelcat2: `js/*.js` (sense esborrar `js/i18n-facil.js`),
    `style.css`, `nav.css`, `footer.js`, `curs/progress.js`, `curs/curs.css`,
-   `curs/capitol.html`.
+   `curs/capitol.html`, `favicon.svg`, `favicon.ico` i `apple-touch-icon.png`.
 2. **Copiar i tornar a aplicar els canvis del -p:**
    - `simulador.html`: la línia `<script src="js/i18n-facil.js">` després de `js/i18n.js`,
      el codi inicial (`if front_is_clear():` / `move()`) i el glossari de lectura fàcil.
@@ -696,6 +704,6 @@ El -p fa servir el mateix motor que karelcat2. Quan karelcat2 millori:
 
 ---
 
-*Última actualització: capítol 10 «Codi net» recuperat al menú i a l'índex (P.4), amb les
-seccions 3 i 4 i els tres exercicis en lectura fàcil, i una solució incorrecta més als
-exercicis 1 i 3. Abans: presentació inicial pròpia (P.1), capítol futur (P.2), repte 8 (P.3).*
+*Última actualització: perla més visible en mode clar (D.1) i icona de la pestanya del
+navegador a totes les pàgines (D.4), portades de karelcat2. Abans: capítol 10 «Codi net»
+recuperat (P.4), presentació inicial pròpia (P.1), capítol futur (P.2), repte 8 (P.3).*

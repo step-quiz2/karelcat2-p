@@ -13,7 +13,7 @@ llegeix instruccions, missatges i enunciats en català, i així aprèn català �
 
 ## Què és
 
-Un curs de 9 capítols + un epíleg («D'en Karel al Python») i 9 reptes, accessible des del
+Un curs de 10 capítols + un epíleg («D'en Karel al Python») i 9 reptes, accessible des del
 navegador sense instal·lació, inspirat en el [Stanford Karel Reader](https://compedu.stanford.edu/karel-reader/docs/python/en/intro.html).
 Cada capítol combina una explicació breu, exemples executables i un exercici.
 
@@ -37,8 +37,8 @@ reptes d'un sol món, i missatges d'error de lectura fàcil (`js/i18n-facil.js`)
 | Capítol 7 — Condicionals | ✅ Escrit |
 | Capítol 8 — Mentre | ✅ Escrit |
 | Capítol 9 — Combinant condicions | ✅ Escrit |
+| Capítol 10 — Codi net | ✅ Escrit |
 | Epíleg — D'en Karel al Python | ✅ Escrit |
-| Capítol 10 — Codi net | ⏸ Es conserva, però no surt al menú |
 | Reptes 1–9 (un sol món cadascun) | ✅ Tots implementats |
 | Reptes 10–13 de karelcat2 (avançats) | ⛔ No inclosos |
 
@@ -86,9 +86,8 @@ js/                 — Motor (igual que karelcat2) + i18n-facil.js (textos de l
 curs/
   index.html        — Índex del curs
   capitol.html      — Plantilla reutilitzable per a capítols
-  capitol-1..9      — Els 9 capítols del curs
+  capitol-1..10     — Els 10 capítols del curs
   capitol-futur     — Epíleg: pont al Python real
-  capitol-10        — «Codi net» (fora del menú)
   repte-1..9        — Els 9 reptes
   capitols.js       — Dades + barra lateral + simuladors + glossari
   progress.js       — Progrés de l'alumne (localStorage)

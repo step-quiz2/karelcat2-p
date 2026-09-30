@@ -486,9 +486,15 @@ Hi ha dos tipus d'errors diferenciats:
   tàctil), registre i botons ≈ 12,5–13 px, cap text d'interfície per sota de ≈ 11,5 px.
 - **Presentació inicial** (`presentacio-karel.html`): només n'hi ha una d'automàtica, la
   primera vegada que s'obre el simulador lliure (mai dins dels iframes del curs). La
-  portada no redirigeix: té l'enllaç «▶ Primer cop aquí? Mira la presentació», destacat
+  portada no redirigeix: té l'enllaç «▶ És el primer cop? Mira la presentació», destacat
   mentre no s'ha vist. Totes dues vies posen `karel_tour_done_v1`. Tancar-la no demana
   confirmació i torna a la pàgina d'on es venia (o a la portada).
+  **Al -p la presentació és pròpia**, de lectura fàcil, en 9 diapositives: què vol dir
+  programar, les instruccions van en ordre («primer, després, al final»), el vocabulari
+  del món (en Karel, casella, perla, roca, motxilla), les direccions (amunt, avall,
+  esquerra, dreta), què vol dir cada instrucció, una **demostració animada** (el codi
+  s'il·lumina línia a línia mentre en Karel es mou) i què fer si t'equivoques
+  (missatge vermell, botó «🎯 Objectiu»). Sense referències a xarxes socials.
 - **Esborrar el progrés:** botó «🗑 Esborra el meu progrés» a la part de baix de la barra
   lateral del curs i al final de `curs/index.html` (ja no és a la capçalera). La funció
   `karelClearProgress` és a `curs/capitols.js`: demana confirmació i esborra el progrés
@@ -565,10 +571,11 @@ El codi només es desa a localStorage al simulador lliure (clau `karel-code-v3`)
 
 | # | Tasca | Detall |
 |---|-------|--------|
-| P.1 | Presentació inicial | `presentacio-karel.html` és la de karelcat2 (Instagram, TikTok, piano…): el text és massa difícil per a Primària i aula d'acollida. Cal una versió de lectura fàcil. |
-| P.2 | Capítol futur | Revisar el text de `capitol-futur.html` amb els criteris de lectura fàcil. |
-| P.3 | Repte 8 | Comença amb 1 perla a la motxilla (`data-bag="1"`), però l'enunciat no la fa servir. Decidir si es treu. |
 | P.4 | Capítol 10 | Decidir si es recupera «Codi net» (vegeu 2.1). |
+
+Fetes: P.1 (presentació inicial de lectura fàcil, vegeu la secció 9), P.2 (capítol
+«D'en Karel al Python» de lectura fàcil, sense `elif`, que no s'explica al curs) i P.3
+(el repte 8 ja no comença amb una perla a la motxilla).
 
 ### Categoria E — Funcionalitat futura (prioritat baixa)
 
@@ -672,8 +679,8 @@ l'acció `.github/workflows/comprova-curs.yml` l'executa a cada push.
 El -p fa servir el mateix motor que karelcat2. Quan karelcat2 millori:
 
 1. **Copiar tal qual** de karelcat2: `js/*.js` (sense esborrar `js/i18n-facil.js`),
-   `style.css`, `nav.css`, `footer.js`, `presentacio-karel.html` (mentre no hi hagi la
-   versió fàcil, tasca P.1), `curs/progress.js`, `curs/curs.css`, `curs/capitol.html`.
+   `style.css`, `nav.css`, `footer.js`, `curs/progress.js`, `curs/curs.css`,
+   `curs/capitol.html`.
 2. **Copiar i tornar a aplicar els canvis del -p:**
    - `simulador.html`: la línia `<script src="js/i18n-facil.js">` després de `js/i18n.js`,
      el codi inicial (`if front_is_clear():` / `move()`) i el glossari de lectura fàcil.
@@ -683,6 +690,8 @@ El -p fa servir el mateix motor que karelcat2. Quan karelcat2 millori:
    - `tests/comprova-curs.js`: `'i18n-facil'` a la llista de fitxers i les expressions
      dels missatges d'error.
    - `index.html` i `curs/index.html`: els textos i els números (9 capítols, 9 reptes).
+   - `presentacio-karel.html`: **no copiar-la**, és pròpia del -p. Si karelcat2 hi millora
+     la navegació (el `<script>` del final), portar només aquell canvi.
 3. **Missatges nous:** si karelcat2 afegeix claus a `K.UI_LANGS.ca`, afegir-ne la versió
    fàcil a `js/i18n-facil.js`.
 4. **No copiar** les pàgines `curs/capitol-*.html` ni `curs/repte-*.html`: el contingut
@@ -691,9 +700,7 @@ El -p fa servir el mateix motor que karelcat2. Quan karelcat2 millori:
 
 ---
 
-*Última actualització: el -p passa a fer servir el motor de karelcat2 (parser nou,
-verificador d'objectius, botó «🎯 Objectiu», diferències en vermell, pas a pas, test
-automàtic). Reptes d'un sol món que desen el progrés. Missatges en català de lectura
-fàcil (`js/i18n-facil.js`). Objectius corregits per al verificador nou, solucions de
-referència a tots els exercicis, mapes dels capítols 4, 7 i 8 arreglats. Eliminat
-`kofi.js`. El capítol 10 surt del menú.*
+*Última actualització: presentació inicial pròpia, de lectura fàcil, amb vocabulari
+visual i una demostració animada (P.1); capítol «D'en Karel al Python» de lectura fàcil
+(P.2); el repte 8 ja no comença amb una perla a la motxilla (P.3). Abans: el -p passa a
+fer servir el motor de karelcat2, reptes d'un sol món, missatges de lectura fàcil.*

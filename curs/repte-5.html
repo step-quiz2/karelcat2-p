@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Repte 5 — El serpentí | Karel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="curs.css">
+  <link rel="stylesheet" href="../nav.css">
+<style>
+  /* ── Títol centrat al header ── */
+  .curs-header-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-family: var(--mono);
+    white-space: nowrap;
+    pointer-events: none;
+    flex: none;
+    overflow: visible;
+    text-overflow: clip;
+  }
+</style>
+</head>
+<body class="curs-light">
+
+
+<header class="curs-header">
+  <button id="sidebar-toggle" aria-label="Mostra/amaga els capítols" aria-expanded="false">☰</button>
+  <span class="curs-header-logo"><span class="logo-icon"></span>Karel</span>
+  <span class="karel-nav-sep"></span>
+    <nav class="karel-nav" id="karel-nav">
+      <a href="capitol-1.html" class="karel-nav-link">Capítols</a>
+      <a href="repte-1.html" class="karel-nav-link active">Reptes</a>
+      <a href="../simulador.html" class="karel-nav-link">Simulador</a>
+      <a href="../edit-mapa.html" class="karel-nav-link">Editor</a>
+    </nav>
+
+  <div class="curs-header-actions"><button class="karel-clear-btn" onclick="karelClearProgress()" title="Netejar tot el progrés">Netejar històric</button></div>
+</header>
+
+
+<div class="curs-layout">
+
+  <div id="sidebar-overlay" aria-hidden="true"></div>
+
+  <nav id="sidebar" class="curs-sidebar" aria-label="Reptes del curs">
+        <div class="sidebar-global-nav" aria-label="Navegació global">
+      <a href="capitol-1.html" class="sgn-link">Capítols</a>
+      <a href="repte-1.html" class="sgn-link sgn-active">Reptes</a>
+      <a href="../simulador.html" class="sgn-link">Simulador</a>
+      <a href="../edit-mapa.html" class="sgn-link">Editor</a>
+    </div>
+<div id="sidebar-nav"></div>
+  </nav>
+
+  <main id="chapter-content" class="curs-content" tabindex="-1">
+    <div class="chapter-content-inner">
+
+      <header class="chapter-header">
+        <h1>Reptes</h1>
+      </header>
+
+
+      <section class="chapter-section chapter-exercise">
+
+        <h2>Repte 5 — El serpentí</h2>
+
+        <!-- Enunciat -->
+        <div class="exercise-enunciat">
+          El fons marí té dues files amb perles. En Karel és a la cantonada inferior esquerra. Ha de recollir totes les perles fent un recorregut: primer la fila de baix d'esquerra a dreta, després la fila de dalt de dreta a esquerra.
+        </div>
+
+        <!-- Simulador d'un sol món (6 caselles) -->
+        <div class="simulador"
+             data-map="A,.,.,A,.,.|K>,.,A,.,A,."
+             data-goal="K<,.,.,.,.,.|.,.,.,.,.,."
+             data-code=""
+             data-height="360">
+        </div>
+
+      </section>
+
+
+      <!-- ══════════════════════════════════════════
+           NAVEGACIÓ
+           ══════════════════════════════════════════ -->
+      <nav class="chapter-nav" aria-label="Navegació entre capítols">
+        <a href="repte-4.html" class="btn-nav btn-nav--prev">← Repte 4</a>
+        <a href="repte-6.html" class="btn-nav btn-nav--next">Repte 6 →</a>
+      </nav>
+
+    </div>
+  </main>
+
+</div>
+
+
+<!--
+  ════════════════════════════════════════════════════════
+  SOLUCIÓ DE REFERÈNCIA — NOMÉS PER AL PROFESSOR
+  No apareix en cap data-code visible a l'alumne.
+  ════════════════════════════════════════════════════════
+
+def recull_fila():
+    while front_is_clear():
+        if pearl_here():
+            grab()
+        move()
+    if pearl_here():
+        grab()
+
+def puja_i_gira():
+    turn_left()
+    move()
+    turn_left()
+
+recull_fila()
+puja_i_gira()
+recull_fila()
+
+  Traça d'execució (amplada 4):
+    Inici: (0,0) Est
+    recull_fila() → recull perles fila 0, acaba a (3,0) Est
+    puja_i_gira()  → turn_left → Nord · move → (3,1) · turn_left → Oest
+    recull_fila() → recull perles fila 1, acaba a (0,1) Oest ✓
+
+  Perquè funciona:
+    · front_is_clear() + error de límit → cap dependència de la longitud.
+    · Dos turn_left() cobreixen la transició Est → Nord → Oest en dues passes.
+    · La postcondició de puja_i_gira() és (col_final, 1) Oest, que és
+      exactament la precondició de la segona crida a recull_fila().
+
+  Errors habituals de l'alumne:
+    · Fer un sol turn_left() a la transició → en Karel queda mirant al Nord
+      i el segon while no avança (front_is_clear() fals de seguida).
+    · Oblidar el move() del puja_i_gira() → en Karel gira però no puja
+      de fila; la segona recull_fila() recorre la mateixa fila inferior.
+    · Oblidar l'error de límit → l'última perla de cada fila no es recull.
+    · Usar front_is_clear() a la condició del gir en lloc de fer-lo
+      incondicionalment → el gir pot no executar-se si en Karel és a la paret.
+
+  Clau pedagògica:
+    La descomposició en recull_fila() i puja_i_gira() il·lustra que
+    una postcondició ben definida (en Karel a l'extrem, orientació exacta)
+    permet encadenar fases sense sorpreses. La simetria és el regal:
+    el MATEIX recull_fila() funciona cap a l'Est i cap a l'Oest perquè
+    front_is_clear() és agnòstic de la direcció.
+  ════════════════════════════════════════════════════════
+-->
+
+<script>const CURRENT_REPTE = 5;</script>
+<script src="progress.js"></script>
+  <script src="capitols.js"></script>
+<script>
+  injectCursLogo();
+  renderReptesSidebar(CURRENT_REPTE);
+  renderSimuladors();
+  initSidebarToggle();
+</script>
+
+<script>
+function karelClearProgress() {
+  if (confirm('Vols netejar totes les anotacions dels capítols llegits i dels reptes superats?')) {
+    KProgress.clear();
+    location.reload();
+  }
+}
+</script>
+<script src="../kofi.js"></script>
+<script src="../footer.js"></script>
+</body>
+</html>

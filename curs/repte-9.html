@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Repte 9 — Les files alternes | Karel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="curs.css">
+  <link rel="stylesheet" href="../nav.css">
+<style>
+  /* ── Títol centrat al header ── */
+  .curs-header-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-family: var(--mono);
+    white-space: nowrap;
+    pointer-events: none;
+    flex: none;
+    overflow: visible;
+    text-overflow: clip;
+  }
+</style>
+</head>
+<body class="curs-light">
+
+
+<header class="curs-header">
+  <button id="sidebar-toggle" aria-label="Mostra/amaga els capítols" aria-expanded="false">☰</button>
+  <span class="curs-header-logo"><span class="logo-icon"></span>Karel</span>
+  <span class="karel-nav-sep"></span>
+    <nav class="karel-nav" id="karel-nav">
+      <a href="capitol-1.html" class="karel-nav-link">Capítols</a>
+      <a href="repte-1.html" class="karel-nav-link active">Reptes</a>
+      <a href="../simulador.html" class="karel-nav-link">Simulador</a>
+      <a href="../edit-mapa.html" class="karel-nav-link">Editor</a>
+    </nav>
+
+  <div class="curs-header-actions"><button class="karel-clear-btn" onclick="karelClearProgress()" title="Netejar tot el progrés">Netejar històric</button></div>
+</header>
+
+
+<div class="curs-layout">
+
+  <div id="sidebar-overlay" aria-hidden="true"></div>
+
+  <nav id="sidebar" class="curs-sidebar" aria-label="Reptes del curs">
+        <div class="sidebar-global-nav" aria-label="Navegació global">
+      <a href="capitol-1.html" class="sgn-link">Capítols</a>
+      <a href="repte-1.html" class="sgn-link sgn-active">Reptes</a>
+      <a href="../simulador.html" class="sgn-link">Simulador</a>
+      <a href="../edit-mapa.html" class="sgn-link">Editor</a>
+    </div>
+<div id="sidebar-nav"></div>
+  </nav>
+
+  <main id="chapter-content" class="curs-content" tabindex="-1">
+    <div class="chapter-content-inner">
+
+      <header class="chapter-header">
+        <h1>Reptes</h1>
+      </header>
+
+
+      <section class="chapter-section chapter-exercise">
+
+        <h2>Repte 9 — Les files alternes</h2>
+
+        <div class="exercise-enunciat">
+          En Karel ha d'omplir de perles algunes files del fons marí: la primera, la tercera, la cinquena... I deixar buides les altres.
+        </div>
+
+        <!-- Simulador d'un sol món (6×5, 3 files amb perles) -->
+        <div class="simulador"
+             data-map=".,.,.,.,.,.|.,.,.,.,.,.|.,.,.,.,.,.|.,.,.,.,.,.|K>,.,.,.,.,."
+             data-goal="A,A,A,A,A,A|.,.,.,.,.,.|A,A,A,A,A,A|.,.,.,.,.,.|A,A,A,A,A,K>"
+             data-bag="99"
+             data-code="def omple_fila():
+
+
+
+"
+             data-height="420">
+        </div>
+
+      </section>
+
+
+      <nav class="chapter-nav" aria-label="Navegació entre capítols">
+        <a href="repte-8.html" class="btn-nav btn-nav--prev">← Repte 8</a>
+        <a href="#" class="btn-nav btn-nav--next btn-nav--disabled" aria-disabled="true">Repte següent →</a>
+      </nav>
+
+    </div>
+  </main>
+
+</div>
+
+
+<!--
+  ════════════════════════════════════════════════════════
+  SOLUCIÓ DE REFERÈNCIA — NOMÉS PER AL PROFESSOR
+
+def omple_fila():
+    drop()
+    while front_is_clear():
+        move()
+        drop()
+
+def puja_des_d_est():
+    turn_left()
+    move()
+    turn_left()
+
+def puja_des_d_oest():
+    turn_right()
+    move()
+    turn_right()
+
+omple_fila()
+
+while left_is_clear():
+    puja_des_d_est()
+    if not front_is_clear():
+        break
+    puja_des_d_est()
+    omple_fila()
+
+    if not right_is_clear():
+        break
+    puja_des_d_oest()
+    if not front_is_clear():
+        break
+    puja_des_d_oest()
+    omple_fila()
+
+  Clau pedagògica: l'alumne practica el serpentí bidireccional
+  amb dos girs simètrics. Separar les dues funcions (puja_des_d_est /
+  puja_des_d_oest) fa que cada gir sigui assequible.
+  ════════════════════════════════════════════════════════
+-->
+
+<script>const CURRENT_REPTE = 9;</script>
+<script src="progress.js"></script>
+  <script src="capitols.js"></script>
+<script>
+  injectCursLogo();
+  renderReptesSidebar(CURRENT_REPTE);
+  renderSimuladors();
+  initSidebarToggle();
+</script>
+
+<script>
+function karelClearProgress() {
+  if (confirm('Vols netejar totes les anotacions dels capítols llegits i dels reptes superats?')) {
+    KProgress.clear();
+    location.reload();
+  }
+}
+</script>
+<script src="../kofi.js"></script>
+<script src="../footer.js"></script>
+</body>
+</html>

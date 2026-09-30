@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Repte 3 — L'escala diagonal | Karel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="curs.css">
+  <link rel="stylesheet" href="../nav.css">
+<style>
+  /* ── Títol centrat al header ── */
+  .curs-header-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-family: var(--mono);
+    white-space: nowrap;
+    pointer-events: none;
+    flex: none;
+    overflow: visible;
+    text-overflow: clip;
+  }
+</style>
+</head>
+<body class="curs-light">
+
+
+<header class="curs-header">
+  <button id="sidebar-toggle" aria-label="Mostra/amaga els capítols" aria-expanded="false">☰</button>
+  <span class="curs-header-logo"><span class="logo-icon"></span>Karel</span>
+  <span class="karel-nav-sep"></span>
+    <nav class="karel-nav" id="karel-nav">
+      <a href="capitol-1.html" class="karel-nav-link">Capítols</a>
+      <a href="repte-1.html" class="karel-nav-link active">Reptes</a>
+      <a href="../simulador.html" class="karel-nav-link">Simulador</a>
+      <a href="../edit-mapa.html" class="karel-nav-link">Editor</a>
+    </nav>
+
+  <div class="curs-header-actions"><button class="karel-clear-btn" onclick="karelClearProgress()" title="Netejar tot el progrés">Netejar històric</button></div>
+</header>
+
+
+<div class="curs-layout">
+
+  <div id="sidebar-overlay" aria-hidden="true"></div>
+
+  <nav id="sidebar" class="curs-sidebar" aria-label="Reptes del curs">
+        <div class="sidebar-global-nav" aria-label="Navegació global">
+      <a href="capitol-1.html" class="sgn-link">Capítols</a>
+      <a href="repte-1.html" class="sgn-link sgn-active">Reptes</a>
+      <a href="../simulador.html" class="sgn-link">Simulador</a>
+      <a href="../edit-mapa.html" class="sgn-link">Editor</a>
+    </div>
+<div id="sidebar-nav"></div>
+  </nav>
+
+  <main id="chapter-content" class="curs-content" tabindex="-1">
+    <div class="chapter-content-inner">
+
+      <header class="chapter-header">
+        <h1>Reptes</h1>
+      </header>
+
+
+      <section class="chapter-section chapter-exercise">
+
+        <h2>Repte 3 — L'escala diagonal</h2>
+
+        <!-- Enunciat -->
+        <div class="exercise-enunciat">
+          En Karel és a la cantonada inferior esquerra. Ha de pujar per l'escala fins a la cantonada superior dreta deixant una perla a cada graó. Has de fer servir la funció <code>puja_grao()</code> i <code>while front_is_clear()</code>.
+        </div>
+
+        <!-- Simulador d'un sol món (5×5, 4 graons) -->
+        <div class="simulador"
+             data-bag="99"
+             data-map=".,.,.,.,.|.,.,.,.,.|.,.,.,.,.|.,.,.,.,.|K>,.,.,.,."
+             data-goal=".,.,.,.,K>|.,.,.,A,.|.,.,A,.,.|.,A,.,.,.|A,.,.,.,."
+             data-code="def puja_grao():
+
+
+"
+             data-height="440">
+        </div>
+
+      </section>
+
+
+      <!-- ══════════════════════════════════════════
+           NAVEGACIÓ
+           ══════════════════════════════════════════ -->
+      <nav class="chapter-nav" aria-label="Navegació entre capítols">
+        <a href="repte-2.html" class="btn-nav btn-nav--prev">← Repte 2</a>
+        <a href="repte-4.html" class="btn-nav btn-nav--next">Repte 4 →</a>
+      </nav>
+
+    </div>
+  </main>
+
+</div>
+
+
+<!--
+  ════════════════════════════════════════════════════════
+  SOLUCIÓ DE REFERÈNCIA — NOMÉS PER AL PROFESSOR
+  No apareix en cap data-code visible a l'alumne.
+  ════════════════════════════════════════════════════════
+
+def puja_grao():
+    move()
+    turn_left()
+    move()
+    turn_right()
+
+while front_is_clear():
+    drop()
+    puja_grao()
+
+  Traça d'execució (coordenades fila, columna des de 0):
+    Inici:  (4,0) → Est
+    Graó 1: drop a (4,0) · move → (4,1) · turn_left → N · move → (3,1) · turn_right → E
+    Graó 2: drop a (3,1) · move → (3,2) · turn_left → N · move → (2,2) · turn_right → E
+    Graó 3: drop a (2,2) · move → (2,3) · turn_left → N · move → (1,3) · turn_right → E
+    Graó 4: drop a (1,3) · move → (1,4) · turn_left → N · move → (0,4) · turn_right → E
+    Final:  (0,4) → Est  ✓
+
+  Perles al món: (4,0) (3,1) (2,2) (1,3) — diagonal perfecta.
+
+  Errors habituals de l'alumne:
+    · Posar drop() dins de puja_grao() en comptes de la iteració principal:
+      la perla es deixa a la casella equivocada (un pas massa tard).
+    · Oblidar el turn_right() final: el puja_grao() no restaura
+      l'orientació Est i el segon graó surt en la direcció equivocada.
+    · Usar for i in range(N) amb N hardcoded: funciona, però trenca
+      la filosofia DRY — el mateix codi no serveix per a tots els mons.
+
+  Clau pedagògica: la funció puja_grao() té una precondició (en Karel mira
+  a l'Est i el camí és lliure) i una postcondició idèntica (en Karel mira a
+  l'Est, una casella i un pis amunt). Gràcies a aquesta simetria, el while
+  pot encadenar-ne tantes com calgui sense saber el nombre a priori.
+  Si la postcondició no es compleix, el segon graó falla.
+  ════════════════════════════════════════════════════════
+-->
+
+<script>const CURRENT_REPTE = 3;</script>
+<script src="progress.js"></script>
+  <script src="capitols.js"></script>
+<script>
+  injectCursLogo();
+  renderReptesSidebar(CURRENT_REPTE);
+  renderSimuladors();
+  initSidebarToggle();
+</script>
+
+<script>
+function karelClearProgress() {
+  if (confirm('Vols netejar totes les anotacions dels capítols llegits i dels reptes superats?')) {
+    KProgress.clear();
+    location.reload();
+  }
+}
+</script>
+<script src="../kofi.js"></script>
+<script src="../footer.js"></script>
+</body>
+</html>

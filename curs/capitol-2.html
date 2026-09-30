@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ca"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capítol 2 — Recollir i deixar | Karel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="curs.css">
+  <link rel="stylesheet" href="../nav.css">
+<style>
+  /* ── Títol centrat al header ── */
+  .curs-header-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-family: var(--mono);
+    white-space: nowrap;
+    pointer-events: none;
+    flex: none;
+    overflow: visible;
+    text-overflow: clip;
+  }
+</style>
+</head>
+<body class="curs-light">
+
+
+<!-- ══════════════════════════════════════════════════════
+     CAPÇALERA
+     (logo via injectCursLogo(), sense toggle de tema)
+     ══════════════════════════════════════════════════════ -->
+<header class="curs-header">
+  <button id="sidebar-toggle" aria-label="Mostra/amaga els capítols" aria-expanded="false">☰</button>
+
+  <span class="curs-header-logo">
+    <span class="logo-icon"></span>
+    Karel
+  </span>
+  <span class="karel-nav-sep"></span>
+    <nav class="karel-nav" id="karel-nav">
+      <a href="capitol-1.html" class="karel-nav-link active">Capítols</a>
+      <a href="repte-1.html" class="karel-nav-link">Reptes</a>
+      <a href="../simulador.html" class="karel-nav-link">Simulador</a>
+      <a href="../edit-mapa.html" class="karel-nav-link">Editor</a>
+    </nav>
+
+
+  <div class="curs-header-actions"><button class="karel-clear-btn" onclick="karelClearProgress()" title="Netejar tot el progrés">Netejar històric</button></div>
+</header>
+
+
+<!-- ══════════════════════════════════════════════════════
+     LAYOUT PRINCIPAL
+     ══════════════════════════════════════════════════════ -->
+<div class="curs-layout">
+
+  <div id="sidebar-overlay" aria-hidden="true"></div>
+
+  <nav id="sidebar" class="curs-sidebar" aria-label="Capítols del curs">
+        <div class="sidebar-global-nav" aria-label="Navegació global">
+      <a href="capitol-1.html" class="sgn-link sgn-active">Capítols</a>
+      <a href="repte-1.html" class="sgn-link">Reptes</a>
+      <a href="../simulador.html" class="sgn-link">Simulador</a>
+      <a href="../edit-mapa.html" class="sgn-link">Editor</a>
+    </div>
+<div id="sidebar-nav"></div>
+  </nav>
+
+  <main id="chapter-content" class="curs-content" tabindex="-1">
+    <div class="chapter-content-inner">
+
+
+      <!-- ─────────────────────────────────────────
+           CAPÇALERA
+           ───────────────────────────────────────── -->
+      <header class="chapter-header">
+        <span class="chapter-badge">Capítol 2</span>
+        <h1>Recollir i deixar</h1>
+        
+      </header>
+
+
+      <!-- ─────────────────────────────────────────
+           SECCIÓ 1 — La motxilla
+           ───────────────────────────────────────── -->
+      <section class="chapter-section">
+        <h2>La motxilla d'en Karel</h2>
+
+        <p>En Karel porta una <strong>motxilla</strong>. A dins de la motxilla, hi ha les perles que recull.</p>
+      </section>
+
+
+      <!-- ─────────────────────────────────────────
+           SECCIÓ 2 — grab
+           ───────────────────────────────────────── -->
+      <section class="chapter-section">
+        <h2>Recollir una perla: <code>grab()</code></h2>
+
+        <p>Si escrius&nbsp;<code>grab()</code>, en Karel recull la perla que hi ha en la casella.</p>
+
+
+        <div class="simulador" data-map="K&gt;,.,A,.,.|.,.,.,.,.|.,.,.,.,." data-code="move()
+move()
+grab()
+move()
+" data-readonly="true" data-label="Exemple" data-height="340">
+        </div>
+
+        
+      </section>
+
+
+      <!-- ─────────────────────────────────────────
+           SECCIÓ 3 — drop
+           ───────────────────────────────────────── -->
+      <section class="chapter-section">
+        <h2>Deixar una perla: <code>drop()</code></h2>
+
+        <p><code>drop()</code> fa que en Karel deixi una perla a la casella.</p>
+
+        <p>En Karel recull la perla, avança, i la deixa en una altra casella.</p>
+
+        <div class="simulador" data-map="K&gt;,A,.,.,.|.,.,.,.,.|.,.,.,.,." data-code="move()
+grab()
+move()
+move()
+drop()
+move()
+" data-readonly="true" data-label="Exemple" data-height="340">
+        </div>
+
+      </section>
+
+
+
+
+
+      <!-- ─────────────────────────────────────────
+           EXERCICI
+           ───────────────────────────────────────── -->
+      <section class="chapter-section chapter-exercise">
+        <h2>Exercici</h2>
+
+        <div class="exercise-enunciat">
+          <p>Hi ha dues perles. En Karel ha de recollir les dues perles, ha d'avançar i les ha de deixar al final de la fila del mig.</p>
+        </div>
+
+        <div class="simulador" data-map=".,.,.,.,.|K&gt;,A,.,A,.|.,.,.,.,." data-goal=".,.,.,.,.|.,.,.,.,K&gt;|.,.,.,.,." data-code="
+
+
+
+
+
+
+
+" data-label="Exercici" data-height="380">
+        </div>
+      </section>
+
+
+      <!-- ─────────────────────────────────────────
+           NAVEGACIÓ
+           ───────────────────────────────────────── -->
+      <nav class="chapter-nav" aria-label="Navegació entre capítols">
+        <a href="capitol-1.html" class="btn-nav btn-nav--prev">← Capítol anterior</a>
+        <a href="capitol-3.html" class="btn-nav btn-nav--next">Capítol següent →</a>
+      </nav>
+
+
+    </div>
+  </main>
+
+</div>
+
+
+<script>const CURRENT_CAPITOL = 2;</script>
+<script src="progress.js"></script>
+  <script src="capitols.js"></script>
+<script>
+  injectCursLogo();
+  renderSidebar(CURRENT_CAPITOL);
+  renderSimuladors();
+  initSidebarToggle();
+</script>
+
+<script>
+function karelClearProgress() {
+  if (confirm('Vols netejar totes les anotacions dels capítols llegits i dels reptes superats?')) {
+    KProgress.clear();
+    location.reload();
+  }
+}
+</script>
+<script src="../kofi.js"></script>
+<script src="../footer.js"></script>
+
+
+</body></html>

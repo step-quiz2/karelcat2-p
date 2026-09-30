@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ca"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capítol 5 — Funcions | Karel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="curs.css">
+  <link rel="stylesheet" href="../nav.css">
+<style>
+  /* ── Títol centrat al header ── */
+  .curs-header-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-family: var(--mono);
+    white-space: nowrap;
+    pointer-events: none;
+    flex: none;
+    overflow: visible;
+    text-overflow: clip;
+  }
+</style>
+</head>
+<body class="curs-light">
+
+
+<!-- ════════════════════════════════════════════════════════
+     CAPÇALERA
+     ════════════════════════════════════════════════════════ -->
+<header class="curs-header">
+  <button id="sidebar-toggle" aria-label="Mostra/amaga els capítols" aria-expanded="false">☰</button>
+
+  <span class="curs-header-logo">
+    <span class="logo-icon"></span>
+    Karel
+  </span>
+  <span class="karel-nav-sep"></span>
+    <nav class="karel-nav" id="karel-nav">
+      <a href="capitol-1.html" class="karel-nav-link active">Capítols</a>
+      <a href="repte-1.html" class="karel-nav-link">Reptes</a>
+      <a href="../simulador.html" class="karel-nav-link">Simulador</a>
+      <a href="../edit-mapa.html" class="karel-nav-link">Editor</a>
+    </nav>
+
+
+  <div class="curs-header-actions"><button class="karel-clear-btn" onclick="karelClearProgress()" title="Netejar tot el progrés">Netejar històric</button></div>
+</header>
+
+
+<!-- ════════════════════════════════════════════════════════
+     LAYOUT PRINCIPAL
+     ════════════════════════════════════════════════════════ -->
+<div class="curs-layout">
+
+  <div id="sidebar-overlay" aria-hidden="true"></div>
+
+  <nav id="sidebar" class="curs-sidebar" aria-label="Capítols del curs">
+        <div class="sidebar-global-nav" aria-label="Navegació global">
+      <a href="capitol-1.html" class="sgn-link sgn-active">Capítols</a>
+      <a href="repte-1.html" class="sgn-link">Reptes</a>
+      <a href="../simulador.html" class="sgn-link">Simulador</a>
+      <a href="../edit-mapa.html" class="sgn-link">Editor</a>
+    </div>
+<div id="sidebar-nav"></div>
+  </nav>
+
+  <main id="chapter-content" class="curs-content" tabindex="-1">
+    <div class="chapter-content-inner">
+
+
+      <!-- ─────────────────────────────────────────────
+           CAPÇALERA
+           ───────────────────────────────────────────── -->
+      <header class="chapter-header">
+        <span class="chapter-badge">Capítol 5</span>
+        <h1>Funcions</h1>
+
+      </header>
+
+
+      <!-- ─────────────────────────────────────────────
+           SECCIÓ 1
+           ───────────────────────────────────────────── -->
+      <section class="chapter-section">
+        <h2>Una recepta de cuina que fas servir sovint</h2>
+
+        <p>Et posem una exemple: volem que en Karel pugi una escala.<br>Haurà de pujar un graó, després un altre, després un altre...<br><br>Per pujar un graó, sempre fa el mateix:<br>1) gira a l'esquerra<br>2) avança<br>3) gira a la dreta<br>4) avança</p>
+
+        <div class="simulador" data-map=".,.,.,.,.|.,.,.,P,.|.,.,P,P,.|K&gt;,P,P,P,." data-code="turn_left()
+move()
+turn_right()
+move()
+" data-readonly="true" data-label="Exemple" data-height="360">
+        </div>
+
+
+      </section>
+
+
+      <!-- ─────────────────────────────────────────────
+           SECCIÓ 2 — def nom():
+           ───────────────────────────────────────────── -->
+      <section class="chapter-section">
+        <h2>Escriure una instrucció nova: <code>def nom():</code></h2>
+
+        <p>Si escrius <code>def nom():</code>, pots crear una instrucció nova. És com inventar-te una recepta de cuina i escriure-la per no oblidar-la.</p>
+
+        <pre><code>def nom():
+    instrucció1()
+    instrucció2()
+    ...</code></pre>
+
+
+
+        <div class="simulador" data-map=".,.,.,.,.|.,.,.,P,.|.,.,P,P,.|K&gt;,P,P,P,." data-code="def puja_grao():
+    turn_left()
+    move()
+    turn_right()
+    move()
+
+puja_grao()
+puja_grao()
+puja_grao()
+" data-readonly="true" data-label="Exemple" data-height="460">
+        </div>
+
+
+      </section>
+
+
+      <!-- ─────────────────────────────────────────────
+           SECCIÓ 3 — Combinar funcions
+           ───────────────────────────────────────────── -->
+      <section class="chapter-section">
+
+
+        <pre><code>def puja_i_recull():
+    puja_grao()
+    grab()</code></pre>
+
+      </section>
+
+
+      <!-- ─────────────────────────────────────────────
+           EXERCICI
+           ───────────────────────────────────────────── -->
+      <section class="chapter-section chapter-exercise">
+        <h2>Exercici</h2>
+
+        <div class="exercise-enunciat">
+          <p>En Karel ha d'escalar una escala, que té 4 graons.<br>Ha d'arribar fins a dalt de tot, on hi ha una perla.&nbsp;<br>Com li podem dir a en Karel que pugui l'escala?</p>
+      </div>
+
+        <div class="simulador" data-map=".,.,.,.,A,.|.,.,.,.,P,.|.,.,.,P,P,.|.,.,P,P,P,.|K&gt;,P,P,P,P,." data-goal=".,.,.,.,K&gt;,.|.,.,.,.,P,.|.,.,.,P,P,.|.,.,P,P,P,.|.,P,P,P,P,." data-code="" data-label="Exercici" data-height="520">
+        </div>
+      </section>
+
+
+      <!-- ─────────────────────────────────────────────
+           NAVEGACIÓ
+           ───────────────────────────────────────────── -->
+      <nav class="chapter-nav" aria-label="Navegació entre capítols">
+        <a href="capitol-4.html" class="btn-nav btn-nav--prev">← Capítol anterior</a>
+        <a href="capitol-6.html" class="btn-nav btn-nav--next">Capítol següent →</a>
+      </nav>
+
+
+    </div>
+  </main>
+
+</div>
+
+
+<script>const CURRENT_CAPITOL = 5;</script>
+<script src="progress.js"></script>
+  <script src="capitols.js"></script>
+<script>
+  injectCursLogo();
+  renderSidebar(CURRENT_CAPITOL);
+  renderSimuladors();
+  initSidebarToggle();
+</script>
+
+<script>
+function karelClearProgress() {
+  if (confirm('Vols netejar totes les anotacions dels capítols llegits i dels reptes superats?')) {
+    KProgress.clear();
+    location.reload();
+  }
+}
+</script>
+<script src="../kofi.js"></script>
+<script src="../footer.js"></script>
+
+
+</body></html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Repte 7 — L'escala doble | Karel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="curs.css">
+  <link rel="stylesheet" href="../nav.css">
+<style>
+  /* ── Títol centrat al header ── */
+  .curs-header-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-family: var(--mono);
+    white-space: nowrap;
+    pointer-events: none;
+    flex: none;
+    overflow: visible;
+    text-overflow: clip;
+  }
+</style>
+</head>
+<body class="curs-light">
+
+
+<header class="curs-header">
+  <button id="sidebar-toggle" aria-label="Mostra/amaga els capítols" aria-expanded="false">☰</button>
+  <span class="curs-header-logo"><span class="logo-icon"></span>Karel</span>
+  <span class="karel-nav-sep"></span>
+    <nav class="karel-nav" id="karel-nav">
+      <a href="capitol-1.html" class="karel-nav-link">Capítols</a>
+      <a href="repte-1.html" class="karel-nav-link active">Reptes</a>
+      <a href="../simulador.html" class="karel-nav-link">Simulador</a>
+      <a href="../edit-mapa.html" class="karel-nav-link">Editor</a>
+    </nav>
+
+  <div class="curs-header-actions"><button class="karel-clear-btn" onclick="karelClearProgress()" title="Netejar tot el progrés">Netejar històric</button></div>
+</header>
+
+
+<div class="curs-layout">
+
+  <div id="sidebar-overlay" aria-hidden="true"></div>
+
+  <nav id="sidebar" class="curs-sidebar" aria-label="Reptes del curs">
+        <div class="sidebar-global-nav" aria-label="Navegació global">
+      <a href="capitol-1.html" class="sgn-link">Capítols</a>
+      <a href="repte-1.html" class="sgn-link sgn-active">Reptes</a>
+      <a href="../simulador.html" class="sgn-link">Simulador</a>
+      <a href="../edit-mapa.html" class="sgn-link">Editor</a>
+    </div>
+<div id="sidebar-nav"></div>
+  </nav>
+
+  <main id="chapter-content" class="curs-content" tabindex="-1">
+    <div class="chapter-content-inner">
+
+      <header class="chapter-header">
+        <h1>Reptes</h1>
+      </header>
+
+
+      <section class="chapter-section chapter-exercise">
+
+        <h2>Repte 7 — L'escala doble</h2>
+
+        <!-- Enunciat -->
+        <div class="exercise-enunciat">
+          En Karel és al peu d'una piràmide. Ha de pujar fins al cim, recollir la perla, baixar per l'altra banda i deixar la perla al peu.
+        </div>
+
+        <!-- Simulador d'un sol món (9×5 amb 4 graons) -->
+        <div class="simulador"
+             data-map=".,.,.,.,A,.,.,.,.|.,.,.,.,P,.,.,.,.|.,.,.,P,P,P,.,.,.|.,.,P,P,P,P,P,.,.|K>,P,P,P,P,P,P,P,."
+             data-goal=".,.,.,.,.,.,.,.,.|.,.,.,.,P,.,.,.,.|.,.,.,P,P,P,.,.,.|.,.,P,P,P,P,P,.,.|.,P,P,P,P,P,P,P,K>"
+             data-code="def puja_grao():
+
+
+
+def baixa_grao():
+
+
+
+"
+             data-height="400">
+        </div>
+
+      </section>
+
+
+      <!-- ══════════════════════════════════════════
+           NAVEGACIÓ
+           ══════════════════════════════════════════ -->
+      <nav class="chapter-nav" aria-label="Navegació entre capítols">
+        <a href="repte-6.html" class="btn-nav btn-nav--prev">← Repte 6</a>
+        <a href="repte-8.html" class="btn-nav btn-nav--next">Repte 8 →</a>
+      </nav>
+
+    </div>
+  </main>
+
+</div>
+
+
+<!--
+  ════════════════════════════════════════════════════════
+  SOLUCIÓ DE REFERÈNCIA — NOMÉS PER AL PROFESSOR
+  No apareix en cap data-code visible a l'alumne.
+  ════════════════════════════════════════════════════════
+
+def puja_grao():
+    move()
+    turn_left()
+    move()
+    turn_right()
+
+def baixa_grao():
+    turn_right()
+    move()
+    turn_left()
+    move()
+
+while not pearl_here():
+    puja_grao()
+
+grab()
+
+while front_is_clear():
+    baixa_grao()
+
+drop()
+
+  Traça d'execució (Test A — 5×3, N=2 graons)
+    Inici: en Karel a (col=0, fil=2) mirant Est.  Pearl a (col=2, fil=0).
+    [fil=0 = cim; fil=2 = peu]
+
+    Pujada:
+      pearl_here() a (0,2) = False → puja_grao:
+        move→(1,2), turn_left→N, move→(1,1), turn_right→E.  en Karel a (1,1).
+      pearl_here() a (1,1) = False → puja_grao:
+        move→(2,1), turn_left→N, move→(2,0), turn_right→E.  en Karel a (2,0).
+      pearl_here() a (2,0) = True → surt del while.
+
+    grab()  →  la casella (2,0) queda buida; en Karel porta 1 perla.
+
+    Baixada:
+      front_is_clear() a (2,0) Est = True (col 3, fil 0 és .)
+        → baixa_grao: turn_right→S, move→(2,1), turn_left→E, move→(3,1).
+          En Karel a (3,1) Est.
+      front_is_clear() a (3,1) Est = True (col 4, fil 1 és .)
+        → baixa_grao: turn_right→S, move→(3,2), turn_left→E, move→(4,2).
+          En Karel a (4,2) Est.
+      front_is_clear() a (4,2) Est = False (paret del món, amplada=5) → surt.
+
+    drop()  →  perla a (4,2).  en Karel queda a (4,2) Est.  ✓
+
+  Perquè funciona per a N=3 (Test B, 7×4) i N=4 (Test C, 9×5):
+    · while not pearl_here() s'atura exactament quan en Karel arriba al cim,
+      independentment de quants graons hi hagi.
+    · while front_is_clear() s'atura quan en Karel ha acabat de baixar
+      (la paret dreta del món tanca el recorregut).
+    · puja_grao() i baixa_grao() comparteixen la mateixa
+      pre/postcondició (peu d'un graó, mirant Est), de manera que
+      encadenar-les amb while és trivial i no cal cap comptador.
+
+  Errors habituals de l'alumne:
+    · Implementar baixa_grao() com una còpia de puja_grao() (sense invertir).
+      → en Karel torna a pujar en comptes de baixar.
+    · Oblidar turn_right() al principi de baixa_grao().
+      → en Karel intenta moure's Est quan hauria d'anar al Sud i xoca.
+    · Usar while front_is_clear(): puja_grao() en comptes de
+      while not pearl_here().
+      → En un món obert (sense parets internes), front_is_clear() és
+         sempre True fins a la paret del món; en Karel surt del món.
+    · Oblidar drop() al final.
+      → El simulador accepta el recorregut però la perla no apareix al peu.
+
+  Clau pedagògica:
+    La simetria puja_grao ↔ baixa_grao és la idea central del repte.
+    Un alumne que entén que baixa_grao() és l'invers pas a pas de
+    puja_grao() pot escriure'l immediatament. Un alumne que el copia
+    i modifica aleatòriament sol necessitar múltiples intents.
+    La condició while not pearl_here() és un exemple de "condició
+    de parada basada en l'estat del món" (no en un comptador), igual
+    que al repte del laberint (repte 9).
+  ════════════════════════════════════════════════════════
+-->
+
+<script>const CURRENT_REPTE = 7;</script>
+<script src="progress.js"></script>
+  <script src="capitols.js"></script>
+<script>
+  injectCursLogo();
+  renderReptesSidebar(CURRENT_REPTE);
+  renderSimuladors();
+  initSidebarToggle();
+</script>
+
+<script>
+function karelClearProgress() {
+  if (confirm('Vols netejar totes les anotacions dels capítols llegits i dels reptes superats?')) {
+    KProgress.clear();
+    location.reload();
+  }
+}
+</script>
+<script src="../kofi.js"></script>
+<script src="../footer.js"></script>
+</body>
+</html>
